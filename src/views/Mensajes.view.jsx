@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 export default function Mensajes() {
-    const estado = useSelector(state=>state);
+  const estado = useSelector(state=>state);
   const dispatch = useDispatch();
    /*
  * Método para crear un nuevo mensaje e

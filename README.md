@@ -1,29 +1,84 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-###DESCRIPCION EJERCICIO
-En estos ejercicios del tema 6, vais a partir de la aplicación de mensajes que hemos creado durante la teoría.
-Lo que haréis será modificar el componente MensajeHeader para incluir un formulario de creación de mensajes.
-Recordad que, como MensajesHeader es un componente, el formulario tendrá que recibir su funcionalidad desde la vista Mensajes.
-Para crear este formulario, podéis hacerlo tanto con Formik como con los formularios propios de HTML y React.
-
-Como segundo ejercicio vais a incluir validaciones al formulario.
-Si habéis utilizado Formik en el ejercicio anterior, podéis utilizar Yup para gestionar estas validaciones; en caso contrario, podéis hacer esta gestión manualmente.
-Las validaciones obligatorias son las siguientes (podéis añadir más validaciones si lo veis conveniente):
-
-Todos los campos son obligatorios.
-El email debe de ser del formato adecuado 'email'.
-El mensaje debe de contener más de 10 caracteres.
  
+dentro de src creamos la carpeta redux y dentro tendremos: actions,reducers y el index.js
 
-Si el usuario en cuestión no cumpliera alguna de estas condiciones, se le mostraría por pantalla un mensaje asociado a dicho error.
+
+el index js será:
+
+import {createStore} from 'redux'
+import { rootReducer } from './reducers/rootReducer';
+import { composeWithDevTools } from "redux-devtools-extension"
+
+    let store = createStore(
+        rootReducer,                     // si solo tenemos un reducer se pone el que tengamos , si tenemos varios iran combinados en el archivo rootReducer
+        composeWithDevTools())
+export default store;
+
+
+la carpeta actions contiene un archivo index.js con todas las acciones  que indican el tipo y el payload
+
+export const borrarMensaje = (index)=>{
+    return{
+        type: 'BORRAR_MENSAJES',
+        payload:index
+    }
+}
+export const vaciarMensajes = () => {
+    return {
+      type: 'VACIAR_MENSAJES'
+    }
+  }
+
+La carpeta reducers contiene todos los reducers y si son varios el rootReducer.js que es:
+
+import { combineReducers } from "redux";
+import { mensajes } from "./msgReducer";      // cada uno de los archivos reducers que hemos creado
+import { loginReducer } from "./loginReducer";
+
+export const rootReducer = combineReducers(
+    {
+        //recibe el estado y el reducer que lo controla
+        msgEstate:mensajes,
+        loginState: loginReducer
+    }
+)
+
+El resto de archivos de reducers contienen el estado que se le pasa, la acción y lo que tiene que devolver:
+export const loginReducer = (state = false, action) => {     //aqui le decimos que si estado no esta definido lo inicialize a false
+    switch(action.type) {
+      case 'LOGIN_LOGIN':
+        return !state
+      default:
+        return state
+    }
+  }
+
+
+En el INdex.js de nuestra aplicacion habrá que crear la store
+
+import store from './redux';
+root.render(
+ <Provider store ={store}>
+    <App />
+    </Provider>
+);
+
+
+
+ //EN EL COMPONENTE Nos enganchamos a la store
+
+
+import {borrarMensaje,crearMensaje,leerMensaje,vaciarMensajes} from '../redux/actions'    //importamos las acciones que vayamos a usar
+import { useDispatch, useSelector } from 'react-redux';
+
+
+
+
+ const estado = useSelector(state=>state); //nos enganchamos al estado global
+const dispatch = useDispatch();   //esto se encarga de llamar a las acciones y se usa como sigue:
+
+    let leer = (index) => {
+    dispatch(leerMensaje(index))
+  }
+  tambien podemos acceder  al valor de los  estados de la siguiente manera
+  estado.loginState  // que son los estados que hemos creado en el rootReducer
+  estado.msgState
