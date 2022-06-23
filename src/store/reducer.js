@@ -5,7 +5,7 @@ export const mensajes = (state = [], action) => {
     switch(action.type) {
       case 'BORRAR_MENSAJES':
         state.splice(action.payload, 1);
-         return [...state];
+         return [...state];  //antes devolviamos state pero eso hace que no nos pinte la lista. ¿¿por que??
 
       case 'VACIAR_MENSAJES':
         return [...state];
