@@ -1,13 +1,12 @@
 import MensajesHeader from '../components/MensajesHeader/MensajesHeader.component';
 import MensajesTable from '../components/MensajesTable/MensajesTable.component';
 import './Mensajes.view.css';
-import {borrarMensaje,crearMensaje,leerMensaje,vaciarMensajes} from '../store/action'
+import {borrarMensaje,crearMensaje,leerMensaje,vaciarMensajes} from '../redux/actions'
 import { useDispatch, useSelector } from 'react-redux';
 
 
 export default function Mensajes() {
-  //const [mensajes, setMensajes] = useState([]);
-  const mensajes = useSelector(state=>state);
+    const mensajes = useSelector(state=>state);
   const dispatch = useDispatch();
    /*
  * Método para crear un nuevo mensaje e

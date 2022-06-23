@@ -4,14 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import {createStore} from 'redux'
-import { mensajes } from './store/reducer';
-import { composeWithDevTools } from "redux-devtools-extension"
+import store from './redux';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let store = createStore(
-    mensajes,
-    composeWithDevTools());
+
 root.render(
  <Provider store ={store}>
     <App />

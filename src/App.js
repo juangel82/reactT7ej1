@@ -8,7 +8,7 @@ export default function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>ReactJS | Imagina Formación</h1>
+        <h1>ReactJS | Imagina Formación EJ7</h1>
       </header>
 
       <div className="App-body">
