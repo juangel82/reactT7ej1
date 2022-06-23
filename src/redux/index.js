@@ -1,6 +1,5 @@
 // STORE - El estado global de la aplicación.
 import {createStore} from 'redux'
-import { mensajes } from './reducers/msgReducer';
 import { rootReducer } from './reducers/rootReducer';
 import { composeWithDevTools } from "redux-devtools-extension"
 
@@ -8,6 +7,6 @@ import { composeWithDevTools } from "redux-devtools-extension"
     mensajes,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__);*/
     let store = createStore(
-        mensajes,
+        rootReducer,
         composeWithDevTools())
 export default store;

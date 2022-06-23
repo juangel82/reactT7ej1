@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 export default function Mensajes() {
-    const mensajes = useSelector(state=>state);
+    const estado = useSelector(state=>state);
   const dispatch = useDispatch();
    /*
  * Método para crear un nuevo mensaje e
@@ -25,7 +25,7 @@ export default function Mensajes() {
    dispatch(crearMensaje(nuevo));
   };
     
-  let leerMensaje = (index) => {
+  let leer = (index) => {
     dispatch(leerMensaje(index))
   }
 /* Eliminamos todos los mensajes del listado mensajes,
@@ -49,8 +49,8 @@ export default function Mensajes() {
       <MensajesHeader clickNuevo={nuevoMensaje} clickEliminar={vaciar}>
       </MensajesHeader>
       
-      <MensajesTable mensajes={mensajes} clickEliminarUno={eliminarMensajes}
-      clickMarcarLeido={leerMensaje}></MensajesTable>
+      <MensajesTable mensajes={estado} clickEliminarUno={eliminarMensajes}
+      clickMarcarLeido={leer}></MensajesTable>
       
     </div>
   );

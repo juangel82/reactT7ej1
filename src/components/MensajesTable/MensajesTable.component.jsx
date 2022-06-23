@@ -13,7 +13,7 @@ export default function MensajesTable(props) {
         </tr>
       </thead>
       <tbody>
-  {props.mensajes.map(((mensaje, index) => 
+  {props.mensajes.msgEstate.map(((mensaje, index) => 
     (<tr key={index}
       className={(mensaje.leido ? 'ElementoLeido' : 'ElementoNOLeido')}>
        <td>{mensaje.asunto}</td>
