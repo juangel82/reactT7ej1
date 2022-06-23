@@ -25,9 +25,9 @@ export const vaciarMensajes = () => {
       payload: index
     }
   }
-  export const clickLogin = (estado)=>{
+  export const clickLogin = ()=>{
     return {
-      type:'LOGIN_LOGIN',
-      payload:estado
+      type:'LOGIN_LOGIN'
+      
     }
   }

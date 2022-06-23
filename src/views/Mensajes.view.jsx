@@ -46,9 +46,14 @@ export default function Mensajes() {
 
   return (
     <div class="Mensajes">
-      <MensajesHeader clickNuevo={nuevoMensaje} clickEliminar={vaciar}>
-      </MensajesHeader>
-      
+
+{estado.loginState > 0 &&
+          
+       
+
+     (<MensajesHeader clickNuevo={nuevoMensaje} clickEliminar={vaciar}>
+      </MensajesHeader>)
+}
       <MensajesTable mensajes={estado} clickEliminarUno={eliminarMensajes}
       clickMarcarLeido={leer}></MensajesTable>
       
